@@ -8,7 +8,7 @@ public class SampleAccountManagementStepDefinition implements En {
 
     private static final Logger logger = LogManager.getLogger(SampleAccountManagementStepDefinition.class);
 
-    public SampleAccountManagementStepDefinition () {
+    public SampleAccountManagementStepDefinition() {
 
         Given("^I access the phptravels site$", () -> {
             logger.info("GIVEN");

@@ -1,11 +1,10 @@
-Feature: View/Update user account information
+Feature: Display relevant items in the search results page
   As a User
-  I should be able to login my account
-  So that I can view or update my personal information
+  I should be able to search for a service
+  So that I can view related items in the search results page
 
-
-  Scenario: Successful Login
+  Scenario: Search for Service
     Given I access the phptravels site
-    And I navigate to the login page
-    When I login using my account credentials
-    Then I should be navigated to the accounts page
+    When I search for 'flights'
+    And I entered dates from 'dd/mm/yyyy' to 'dd/mm/yyyy'
+    Then I should see relevant search results
