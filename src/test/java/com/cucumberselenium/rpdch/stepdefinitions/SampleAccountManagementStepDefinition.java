@@ -1,8 +1,10 @@
 package com.cucumberselenium.rpdch.stepdefinitions;
 
+import com.cucumberselenium.rpdch.utilities.FileMgmtUtil;
 import cucumber.api.java8.En;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 
 public class SampleAccountManagementStepDefinition implements En {
 
@@ -25,5 +27,7 @@ public class SampleAccountManagementStepDefinition implements En {
         Then("^I should be navigated to the accounts page$", () -> {
             logger.fatal("THEN");
         });
+
     }
+
 }
