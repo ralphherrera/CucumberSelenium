@@ -1,5 +1,7 @@
 package com.cucumberselenium.rpdch.stepdefinitions;
 
+import com.cucumberselenium.rpdch.constants.CommonConstants;
+import com.cucumberselenium.rpdch.utilities.FileMgmtUtil;
 import cucumber.api.Scenario;
 import cucumber.api.java8.En;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +28,7 @@ public class ScenarioHooks implements En {
                 driver = new ChromeDriver();
                 driver.manage().deleteAllCookies();
                 driver.manage().window().maximize();
-                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(FileMgmtUtil.getNumberValue(CommonConstants.DEFAULT_TIMEOUT), TimeUnit.SECONDS);
             } catch (WebDriverException wde) {
                 Assert.fail("Failed to initialize Web Driver");
             } catch (Exception e) {
