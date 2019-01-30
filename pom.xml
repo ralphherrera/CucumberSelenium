@@ -43,6 +43,13 @@
             <version>${io.cucumber.version}</version>
         </dependency>
 
+        <!-- Cucumber Picocontainer-->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
         <!--Logger-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

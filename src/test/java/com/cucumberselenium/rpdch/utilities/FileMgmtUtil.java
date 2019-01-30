@@ -31,13 +31,12 @@ public class FileMgmtUtil {
     }
 
     public static String getPropertyValue(String key) {
-        logger.info("Getting value from config.properties with key {}", key);
-
+//        logger.info("Getting value from config.properties with key {}", key);
         return readPropertyValue().getProperty(key);
     }
 
     public static Integer getNumberValue(String key) {
-        logger.info("Getting value from config.properties with key {}", key);
+//        logger.info("Getting value from config.properties with key {}", key);
         Integer num = null;
         try {
             num = Integer.parseInt(getPropertyValue(key));
