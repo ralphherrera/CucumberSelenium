@@ -32,7 +32,7 @@
 
     <Loggers>
         <Root level="VERBOSE" additivity="false">
-            <AppenderRef ref="console" level="NOTICE"/>
+            <AppenderRef ref="console" level="VERBOSE"/>
             <AppenderRef ref="rollingFile" level="VERBOSE"/>
         </Root>
     </Loggers>

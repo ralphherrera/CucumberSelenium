@@ -31,7 +31,7 @@ public class SampleAccountManagementStepDefinition implements En {
         When("^I login using my account credentials$", () -> {
             loginPage.setDriver(hooks.getDriverWrapper());
             loginPage.inputTextToField("Email Field", "user@phptravels.com");
-            loginPage.inputTextToField("Password Field", "demouser");
+            loginPage.inputTextToField("Password Field", "a");
             loginPage.clickElement("Login Button");
         });
 

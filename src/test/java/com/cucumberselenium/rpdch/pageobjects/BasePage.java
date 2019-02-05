@@ -26,9 +26,12 @@ abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    // Page Element Repository
     abstract WebElement returnPageElement(String key);
+
     abstract List<WebElement> returnPageElementList(String key);
 
+    // Page Actions
     public void clickElement(String element) {
         driverWrapper.clickElement(returnPageElement(element));
     }
@@ -47,5 +50,13 @@ abstract class BasePage {
 
     public boolean isElementDisplayed(String element) {
         return driverWrapper.isElementPresent(returnPageElement(element));
+    }
+
+    public boolean verifyHtmlAttributeIsChanged(String element, String attribute, String value) {
+        return driverWrapper.waitForHtmlAttributeToChange(returnPageElement(element), attribute, value);
+    }
+
+    public void waitForTextToChange(String element, String text) {
+        driverWrapper.waitForTextToChange(returnPageElement(element), text);
     }
 }

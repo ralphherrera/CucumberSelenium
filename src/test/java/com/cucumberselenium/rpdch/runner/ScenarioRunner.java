@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = {"@sampleLogin"},
+        tags = {"@sampleSearch, @sampleLogin"},
         features = {"src/test/resources/features"},
         glue = {"com.cucumberselenium.rpdch.stepdefinitions"}, // package of stepdefinition classes
 //        dryRun = true, // checks that every Step mentioned in the Feature File have corresponding code written in Step Definition file or not
