@@ -22,6 +22,7 @@ public class ScenarioHooks implements En {
     private WebDriverWrapper driverWrapper;
     private BrowserManager browserManager;
 
+
     public ScenarioHooks() {
 
         Before((Scenario scenario) -> {
@@ -62,4 +63,5 @@ public class ScenarioHooks implements En {
     public WebDriverWrapper getDriverWrapper() {
         return driverWrapper;
     }
+
 }
