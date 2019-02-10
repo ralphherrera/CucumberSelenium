@@ -1,44 +1,46 @@
-package com.cucumberselenium.rpdch.runner;
+#parse("/array.java.vm")
+        #if($packageName)
+        package $packageName;
 
-
+        #end
+import com.cucumberselenium.rpdch.utilities.CommonUtil;
+import com.cucumberselenium.rpdch.utilities.FileMgmtUtil;
 import com.vimalselvam.cucumber.listener.ExtentProperties;
-import com.vimalselvam.cucumber.listener.Reporter;
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import com.vimalselvam.cucumber.listener.Reporter;
 
 import java.io.File;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = {"@sampleLogin"},
-        features = {"src/test/resources/features"},
-        glue = {"com.cucumberselenium.rpdch.stepdefinitions"}, // package of stepdefinition classes
-//        dryRun = true, // checks that every Step mentioned in the Feature File have corresponding code written in Step Definition file or not
-        monochrome = true, // console output for the Cucumber test are much more readable
-        plugin = {
-//                "pretty",
-                "html:target/testresults/html", // test results as html
-                "json:target/testresults/cucumber.json", // test results as json
-                "junit:target/testresults/cucumber.xml", // test results as xml
-                "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" // extent reporter
-        }
-)
-public class ScenarioRunner {
+        strict = $strict,
+        features = {"$featureFile"},
+        plugin = #stringArray($plugins),
+        monochrome = $monochrome,
+        #if(!$featureFile.contains(".feature:") && $tags)
+        tags= #stringArray($tags),
+        #end
+        glue= #stringArray($glue))
+public class $className {
+
+    private final static String FEATURE_NAME = "$featureFile".substring("$featureFile".lastIndexOf("/") + 1, "$featureFile".indexOf(".feature"));
 
     @BeforeClass
-    public static void setup() {
+    public static void beforeClass() {
         ExtentProperties extentProperties = ExtentProperties.INSTANCE;
         extentProperties.setReportPath("target/reports/myreport.html");
         extentProperties.setKlovServerUrl("http://localhost:2019");
 
         // specify project
         // ! you must specify a project, other a "Default project will be used"
-        extentProperties.setKlovProjectName("Cucumber Selenium");
+        extentProperties.setKlovProjectName(FileMgmtUtil.getPropertyValue("app.name"));
         // you must specify a reportName otherwise a default timestamp will be used
-        extentProperties.setKlovReportName("Test Report");
+        extentProperties.setKlovReportName(FEATURE_NAME + " " + CommonUtil.getTimeStamp());
         // Mongo DB Configuration
         extentProperties.setMongodbHost("localhost");
         extentProperties.setMongodbPort(27017);
@@ -50,10 +52,9 @@ public class ScenarioRunner {
     }
 
     @AfterClass
-    public static void writeExtentReport() {
+    public static void afterClass() {
         Reporter.loadXMLConfig(new File("src/test/resources/extent-config.xml"));
         Reporter.setSystemInfo("user", System.getProperty("user.name"));
         Reporter.setSystemInfo("os", "Windows");
     }
-
 }

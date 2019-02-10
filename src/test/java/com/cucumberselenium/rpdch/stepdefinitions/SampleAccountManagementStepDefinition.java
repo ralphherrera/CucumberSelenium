@@ -31,7 +31,7 @@ public class SampleAccountManagementStepDefinition implements En {
         When("^I login using my account credentials$", () -> {
             loginPage.setDriver(hooks.getDriverWrapper());
             loginPage.inputTextToField("Email Field", "user@phptravels.com");
-            loginPage.inputTextToField("Password Field", "a");
+            loginPage.inputTextToField("Password Field", "demouser");
             loginPage.clickElement("Login Button");
         });
 
@@ -41,6 +41,18 @@ public class SampleAccountManagementStepDefinition implements En {
                     is(true));
         });
 
+        When("^I login using invalid credentials$", () -> {
+            loginPage.setDriver(hooks.getDriverWrapper());
+            loginPage.inputTextToField("Email Field", "user@phptravels.com");
+            loginPage.inputTextToField("Password Field", "invalidpassword");
+            loginPage.clickElement("Login Button");
+        });
+
+        Then("^I should not be navigated to the accounts page$", () -> {
+            accountsPage.setDriver(hooks.getDriverWrapper());
+            Assert.assertThat("Verify if user is navigated to the accounts page", !accountsPage.isElementDisplayed("Name Header"),
+                    is(true));
+        });
     }
 
 }

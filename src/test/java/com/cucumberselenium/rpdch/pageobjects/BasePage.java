@@ -49,7 +49,9 @@ abstract class BasePage {
     }
 
     public boolean isElementDisplayed(String element) {
-        return driverWrapper.isElementPresent(returnPageElement(element));
+        boolean isDisplayed = driverWrapper.isElementPresent(returnPageElement(element));
+        driverWrapper.takeScreenshot();
+        return isDisplayed;
     }
 
     public boolean verifyHtmlAttributeIsChanged(String element, String attribute, String value) {

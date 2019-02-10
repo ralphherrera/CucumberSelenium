@@ -34,7 +34,7 @@ public class ScenarioHooks implements En {
                 Dimension dimension = new Dimension(1920, 1080); // Set browser window size
                 driver.manage().window().setSize(dimension);
                 driver.manage().timeouts().implicitlyWait(FileMgmtUtil.getNumberValue(CommonConstants.DEFAULT_TIMEOUT), TimeUnit.SECONDS);
-                driverWrapper = new WebDriverWrapper(driver);
+                driverWrapper = new WebDriverWrapper(driver, scenario);
             } catch (WebDriverException wde) {
                 logger.error(wde.getMessage());
                 Assert.fail("Failed to initialize Web Driver");
@@ -47,6 +47,9 @@ public class ScenarioHooks implements En {
         After((Scenario scenario) -> {
             logger.info("Ending scenario: {}", scenario.getName());
             try {
+                if (scenario.isFailed()) {
+                    driverWrapper.takeScreenshot();
+                }
                 if (driverWrapper.getDriver() != null) {
                     driverWrapper.getDriver().quit();
                     driverWrapper = null;
