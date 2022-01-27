@@ -14,7 +14,7 @@
         <selenium.webdriver.version>3.141.59</selenium.webdriver.version>
         <info.cucumber.version>1.2.5</info.cucumber.version>
         <io.cucumber.version>2.0.0</io.cucumber.version>
-        <log4j.version>2.8</log4j.version>
+        <log4j.version>2.16.0</log4j.version>
         <extent.reports.version>3.1.1</extent.reports.version>
     </properties>
     <dependencies>
